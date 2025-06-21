@@ -1066,6 +1066,10 @@
             script.src = 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js';
             document.body.appendChild(script);
         }
+
+        if (window.location.pathname.endsWith("index.html")) {
+            window.location.replace(window.location.pathname.replace("index.html", ""));
+        }
     </script>
 </body>
 </html>
