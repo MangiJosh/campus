@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order Your SIM - Campus Mobile</title>
-    <meta name="description" content="Order your Campus Mobile SIM card and start enjoying affordable data plans designed for South African students and youth.">
+    <title>Order SIM - Campus Mobile</title>
+    <meta name="description" content="Order your Campus Mobile SIM card today. Choose from our student-friendly plans and get started with affordable mobile data.">
     <link rel="icon" type="image/png" href="icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,6 +36,7 @@
             line-height: 1.6;
             color: var(--text-dark);
             background: var(--gray-50);
+            overflow-x: hidden;
             padding-top: 70px;
         }
 
@@ -104,27 +105,51 @@
             box-shadow: var(--shadow-lg);
         }
 
-        /* Order Form Section */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .hamburger {
+            width: 25px;
+            height: 3px;
+            background: var(--text-dark);
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        .mobile-menu-toggle.active .hamburger:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .mobile-menu-toggle.active .hamburger:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.active .hamburger:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        /* Order Section */
         .order-section {
             padding: 4rem 1rem;
-            max-width: 800px;
-            margin: 0 auto;
         }
 
         .order-container {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: var(--shadow);
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .section-header {
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 4rem;
         }
 
         .section-title {
-            font-size: 2rem;
+            font-size: 2.5rem;
             font-weight: 700;
             color: var(--text-dark);
             margin-bottom: 1rem;
@@ -133,82 +158,233 @@
         .section-subtitle {
             color: var(--text-gray);
             font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .order-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 2rem;
+        }
+
+        .order-form {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        .order-form h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
         }
 
         .form-group {
             margin-bottom: 1.5rem;
         }
 
-        .form-label {
+        .form-group label {
             display: block;
             margin-bottom: 0.5rem;
             font-weight: 500;
             color: var(--text-dark);
         }
 
-        .form-input {
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
             width: 100%;
             padding: 0.75rem;
-            border: 1px solid var(--gray-100);
+            border: 2px solid var(--gray-100);
             border-radius: 8px;
             font-size: 1rem;
             transition: border-color 0.3s ease;
+            font-family: inherit;
         }
 
-        .form-input:focus {
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
             outline: none;
             border-color: var(--primary-green);
         }
 
-        .form-select {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid var(--gray-100);
-            border-radius: 8px;
-            font-size: 1rem;
-            background: var(--white);
-            cursor: pointer;
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
         }
 
-        .form-select:focus {
-            outline: none;
-            border-color: var(--primary-green);
-        }
-
-        .form-checkbox {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .form-checkbox input {
-            width: 18px;
-            height: 18px;
-        }
-
-        .form-checkbox label {
-            color: var(--text-gray);
-            font-size: 0.9rem;
-        }
-
-        .submit-button {
-            width: 100%;
-            padding: 1rem;
+        .submit-btn {
             background: var(--primary-green);
             color: var(--white);
+            padding: 1rem 2rem;
             border: none;
             border-radius: 8px;
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
+            width: 100%;
         }
 
-        .submit-button:hover {
+        .submit-btn:hover {
             background: var(--dark-green);
             transform: translateY(-2px);
             box-shadow: var(--shadow-lg);
+        }
+
+        .submit-btn:disabled {
+            background: var(--text-gray);
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Order Summary */
+        .order-summary {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 100px;
+        }
+
+        .order-summary h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+        }
+
+        .plan-selection {
+            margin-bottom: 2rem;
+        }
+
+        .plan-option {
+            border: 2px solid var(--gray-100);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .plan-option:hover {
+            border-color: var(--primary-green);
+            background: var(--green-50);
+        }
+
+        .plan-option.selected {
+            border-color: var(--primary-green);
+            background: var(--green-50);
+        }
+
+        .plan-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .plan-name {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .plan-price {
+            font-weight: 700;
+            color: var(--primary-green);
+        }
+
+        .plan-features {
+            list-style: none;
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+
+        .plan-features li {
+            margin-bottom: 0.25rem;
+        }
+
+        .plan-features li::before {
+            content: "✓";
+            color: var(--primary-green);
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .order-total {
+            border-top: 2px solid var(--gray-100);
+            padding-top: 1rem;
+            margin-top: 1rem;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .total-row.final {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--primary-green);
+            border-top: 1px solid var(--gray-100);
+            padding-top: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Benefits Section */
+        .benefits-section {
+            padding: 4rem 1rem;
+            background: var(--white);
+        }
+
+        .benefits-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .benefit-card {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .benefit-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            color: var(--white);
+            font-size: 1.5rem;
+        }
+
+        .benefit-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .benefit-description {
+            color: var(--text-gray);
+            line-height: 1.6;
         }
 
         /* Footer */
@@ -216,7 +392,6 @@
             background: var(--text-dark);
             color: var(--white);
             padding: 3rem 1rem 1rem;
-            margin-top: 4rem;
         }
 
         .footer-container {
@@ -263,21 +438,6 @@
             color: #9ca3af;
         }
 
-        /* Mobile Styles */
-        @media (max-width: 768px) {
-            .nav-menu {
-                display: none;
-            }
-
-            .order-container {
-                padding: 1.5rem;
-            }
-
-            .section-title {
-                font-size: 1.75rem;
-            }
-        }
-
         /* Back to Top Button */
         .back-to-top {
             position: fixed;
@@ -309,6 +469,93 @@
             background: var(--dark-green);
             transform: translateY(-2px);
         }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: var(--white);
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                padding-top: 2rem;
+                transition: left 0.3s ease;
+                box-shadow: var(--shadow);
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-menu li {
+                margin: 1rem 0;
+            }
+
+            .nav-menu a {
+                font-size: 1.2rem;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .cta-button {
+                display: none;
+            }
+
+            .order-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .order-summary {
+                position: static;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-container {
+                padding: 0 0.5rem;
+            }
+
+            .order-section,
+            .benefits-section {
+                padding: 3rem 0.5rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .order-form,
+            .order-summary,
+            .benefit-card {
+                padding: 1.5rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -320,7 +567,7 @@
                 Campus Mobile
             </a>
             
-            <ul class="nav-menu">
+            <ul class="nav-menu" id="navMenu">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="plans.html">Plans</a></li>
                 <li><a href="how-it-works.html">How It Works</a></li>
@@ -328,68 +575,201 @@
             </ul>
             
             <a href="order-sim.html" class="cta-button">Order SIM</a>
+            
+            <div class="mobile-menu-toggle" id="mobileToggle">
+                <div class="hamburger"></div>
+                <div class="hamburger"></div>
+                <div class="hamburger"></div>
+            </div>
         </nav>
     </header>
 
-    <!-- Order Form Section -->
+    <!-- Order Section -->
     <section class="order-section">
         <div class="order-container">
             <div class="section-header">
-                <h1 class="section-title">Order Your SIM Card</h1>
-                <p class="section-subtitle">Fill in your details below and we'll deliver your SIM card to your campus.</p>
+                <h1 class="section-title">Order Your Campus Mobile SIM</h1>
+                <p class="section-subtitle">Get started with affordable mobile data designed for students. Choose your plan and we'll deliver your SIM card to your campus.</p>
             </div>
 
-            <form id="orderForm">
-                <div class="form-group">
-                    <label for="fullName" class="form-label">Full Name</label>
-                    <input type="text" id="fullName" name="fullName" class="form-input" required>
+            <div class="order-grid">
+                <div class="order-form">
+                    <h3>Personal Information</h3>
+                    <form id="orderForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name *</label>
+                                <input type="text" id="firstName" name="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name *</label>
+                                <input type="text" id="lastName" name="lastName" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="studentId">Student ID Number</label>
+                            <input type="text" id="studentId" name="studentId" placeholder="For NSFAS discounts">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="university">University/Institution *</label>
+                            <select id="university" name="university" required>
+                                <option value="">Select your university</option>
+                                <option value="uct">University of Cape Town</option>
+                                <option value="wits">University of the Witwatersrand</option>
+                                <option value="stellenbosch">Stellenbosch University</option>
+                                <option value="up">University of Pretoria</option>
+                                <option value="rhodes">Rhodes University</option>
+                                <option value="ukzn">University of KwaZulu-Natal</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="campus">Campus Address *</label>
+                            <textarea id="campus" name="campus" placeholder="Enter your campus address for delivery" required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="delivery">Delivery Preference</label>
+                            <select id="delivery" name="delivery">
+                                <option value="campus">Campus Pickup (Free)</option>
+                                <option value="delivery">Campus Delivery (R25)</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="submit-btn" id="submitBtn">Place Order</button>
+                    </form>
                 </div>
 
-                <div class="form-group">
-                    <label for="email" class="form-label">Email Address</label>
-                    <input type="email" id="email" name="email" class="form-input" required>
+                <div class="order-summary">
+                    <h3>Order Summary</h3>
+                    
+                    <div class="plan-selection">
+                        <h4 style="margin-bottom: 1rem; color: var(--text-dark);">Select Your Plan</h4>
+                        
+                        <div class="plan-option" data-plan="hourly" data-price="5">
+                            <div class="plan-header">
+                                <span class="plan-name">Hourly</span>
+                                <span class="plan-price">R5/hour</span>
+                            </div>
+                            <ul class="plan-features">
+                                <li>500MB data</li>
+                                <li>WhatsApp zero-rated</li>
+                                <li>Perfect for quick checks</li>
+                            </ul>
+                        </div>
+
+                        <div class="plan-option" data-plan="daily" data-price="15">
+                            <div class="plan-header">
+                                <span class="plan-name">Daily</span>
+                                <span class="plan-price">R15/day</span>
+                            </div>
+                            <ul class="plan-features">
+                                <li>2GB data</li>
+                                <li>All social media zero-rated</li>
+                                <li>Educational sites free</li>
+                            </ul>
+                        </div>
+
+                        <div class="plan-option" data-plan="weekly" data-price="89">
+                            <div class="plan-header">
+                                <span class="plan-name">Weekly</span>
+                                <span class="plan-price">R89/week</span>
+                            </div>
+                            <ul class="plan-features">
+                                <li>10GB data</li>
+                                <li>Unlimited WhatsApp</li>
+                                <li>YouTube reduced rates</li>
+                            </ul>
+                        </div>
+
+                        <div class="plan-option" data-plan="monthly" data-price="299">
+                            <div class="plan-header">
+                                <span class="plan-name">Monthly</span>
+                                <span class="plan-price">R299/month</span>
+                            </div>
+                            <ul class="plan-features">
+                                <li>50GB data</li>
+                                <li>Unlimited social media</li>
+                                <li>All educational sites free</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="order-total">
+                        <div class="total-row">
+                            <span>SIM Card</span>
+                            <span>Free</span>
+                        </div>
+                        <div class="total-row">
+                            <span>Delivery</span>
+                            <span id="deliveryCost">Free</span>
+                        </div>
+                        <div class="total-row final">
+                            <span>Total</span>
+                            <span id="totalCost">R0</span>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 1.5rem; padding: 1rem; background: var(--green-50); border-radius: 8px; border-left: 4px solid var(--primary-green);">
+                        <h4 style="color: var(--primary-green); margin-bottom: 0.5rem;">What's Included</h4>
+                        <ul style="color: var(--text-gray); font-size: 0.9rem; list-style: none;">
+                            <li>✓ Free SIM card</li>
+                            <li>✓ Instant activation</li>
+                            <li>✓ Student discounts</li>
+                            <li>✓ Zero-rated educational content</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits-section">
+        <div class="benefits-container">
+            <div class="section-header">
+                <h2 class="section-title">Why Order with Campus Mobile?</h2>
+                <p class="section-subtitle">We make getting mobile data simple and affordable for students.</p>
+            </div>
+
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">🚀</div>
+                    <h3 class="benefit-title">Fast Delivery</h3>
+                    <p class="benefit-description">Get your SIM card delivered to your campus within 2-3 business days, or pick it up from our campus outlets.</p>
                 </div>
 
-                <div class="form-group">
-                    <label for="phone" class="form-label">Phone Number</label>
-                    <input type="tel" id="phone" name="phone" class="form-input" required>
+                <div class="benefit-card">
+                    <div class="benefit-icon">💰</div>
+                    <h3 class="benefit-title">Student Discounts</h3>
+                    <p class="benefit-description">Special rates for NSFAS-funded students and exclusive campus promotions throughout the year.</p>
                 </div>
 
-                <div class="form-group">
-                    <label for="idNumber" class="form-label">ID Number</label>
-                    <input type="text" id="idNumber" name="idNumber" class="form-input" required>
+                <div class="benefit-card">
+                    <div class="benefit-icon">📚</div>
+                    <h3 class="benefit-title">Educational Benefits</h3>
+                    <p class="benefit-description">Access university portals, educational websites, and learning platforms without using your data allowance.</p>
                 </div>
 
-                <div class="form-group">
-                    <label for="university" class="form-label">University/College</label>
-                    <select id="university" name="university" class="form-select" required>
-                        <option value="">Select your institution</option>
-                        <option value="uct">University of Cape Town</option>
-                        <option value="wits">University of the Witwatersrand</option>
-                        <option value="up">University of Pretoria</option>
-                        <option value="ukzn">University of KwaZulu-Natal</option>
-                        <option value="ru">Rhodes University</option>
-                        <option value="other">Other</option>
-                    </select>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🎯</div>
+                    <h3 class="benefit-title">Campus Coverage</h3>
+                    <p class="benefit-description">Optimized coverage for all major South African campuses and student accommodation areas.</p>
                 </div>
-
-                <div class="form-group">
-                    <label for="campus" class="form-label">Campus</label>
-                    <input type="text" id="campus" name="campus" class="form-input" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="address" class="form-label">Delivery Address</label>
-                    <input type="text" id="address" name="address" class="form-input" required>
-                </div>
-
-                <div class="form-checkbox">
-                    <input type="checkbox" id="terms" name="terms" required>
-                    <label for="terms">I agree to the terms and conditions and confirm that I am a student or youth.</label>
-                </div>
-
-                <button type="submit" class="submit-button">Order SIM Card</button>
-            </form>
+            </div>
         </div>
     </section>
 
@@ -418,10 +798,10 @@
                 <div class="footer-section">
                     <h3>Support</h3>
                     <ul>
-                        <li><a href="support.html">Help Center</a></li>
-                        <li><a href="#">WhatsApp</a></li>
+                        <li><a href="404.html">Help Center</a></li>
+                        <li><a href="404.html">WhatsApp</a></li>
                         <li><a href="contact.html">Contact Us</a></li>
-                        <li><a href="account.html">My Account</a></li>
+                        <li><a href="404.html">My Account</a></li>
                     </ul>
                 </div>
                 
@@ -429,15 +809,15 @@
                     <h3>Company</h3>
                     <ul>
                         <li><a href="about.html">About Us</a></li>
-                        <li><a href="#">Careers</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="404.html">Careers</a></li>
+                        <li><a href="404.html">Privacy Policy</a></li>
+                        <li><a href="404.html">Terms of Service</a></li>
                     </ul>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2025 Campus Mobile. All rights reserved. | Powered by MTN Network</p>
+                <p>&copy; 2025 Campus Mobile. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -446,44 +826,30 @@
     <button class="back-to-top" id="backToTop">↑</button>
 
     <script>
-        // Form validation
-        const orderForm = document.getElementById('orderForm');
+        // Mobile Menu Toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navMenu = document.getElementById('navMenu');
         
-        orderForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Basic form validation
-            const fullName = document.getElementById('fullName').value;
-            const email = document.getElementById('email').value;
-            const phone = document.getElementById('phone').value;
-            const idNumber = document.getElementById('idNumber').value;
-            const university = document.getElementById('university').value;
-            const campus = document.getElementById('campus').value;
-            const address = document.getElementById('address').value;
-            const terms = document.getElementById('terms').checked;
+        mobileToggle.addEventListener('click', function() {
+            mobileToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
 
-            if (!fullName || !email || !phone || !idNumber || !university || !campus || !address || !terms) {
-                alert('Please fill in all required fields and accept the terms and conditions.');
-                return;
+        // Close mobile menu when clicking on a link
+        const navLinks = document.querySelectorAll('.nav-menu a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!mobileToggle.contains(e.target) && !navMenu.contains(e.target)) {
+                mobileToggle.classList.remove('active');
+                navMenu.classList.remove('active');
             }
-
-            // Phone number validation (South African format)
-            const phoneRegex = /^(\+27|0)[1-9][0-9]{8}$/;
-            if (!phoneRegex.test(phone.replace(/\s/g, ''))) {
-                alert('Please enter a valid South African phone number.');
-                return;
-            }
-
-            // ID number validation (South African format)
-            const idRegex = /^[0-9]{13}$/;
-            if (!idRegex.test(idNumber.replace(/\s/g, ''))) {
-                alert('Please enter a valid South African ID number (13 digits).');
-                return;
-            }
-
-            // If all validations pass, you can submit the form
-            alert('Thank you for your order! We will contact you shortly with delivery details.');
-            orderForm.reset();
         });
 
         // Header scroll effect
@@ -504,6 +870,110 @@
             lastScrollTop = scrollTop;
         });
 
+        // Plan Selection
+        const planOptions = document.querySelectorAll('.plan-option');
+        const deliverySelect = document.getElementById('delivery');
+        const deliveryCost = document.getElementById('deliveryCost');
+        const totalCost = document.getElementById('totalCost');
+        let selectedPlan = null;
+
+        planOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                // Remove selected class from all options
+                planOptions.forEach(opt => opt.classList.remove('selected'));
+                
+                // Add selected class to clicked option
+                this.classList.add('selected');
+                
+                // Update selected plan
+                selectedPlan = {
+                    name: this.querySelector('.plan-name').textContent,
+                    price: parseInt(this.dataset.price)
+                };
+                
+                updateTotal();
+            });
+        });
+
+        // Delivery cost update
+        deliverySelect.addEventListener('change', function() {
+            updateTotal();
+        });
+
+        function updateTotal() {
+            let total = 0;
+            
+            // Add plan cost if selected
+            if (selectedPlan) {
+                total += selectedPlan.price;
+            }
+            
+            // Add delivery cost
+            if (deliverySelect.value === 'delivery') {
+                total += 25;
+                deliveryCost.textContent = 'R25';
+            } else {
+                deliveryCost.textContent = 'Free';
+            }
+            
+            totalCost.textContent = `R${total}`;
+        }
+
+        // Form Submission
+        const orderForm = document.getElementById('orderForm');
+        const submitBtn = document.getElementById('submitBtn');
+        
+        orderForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Validate plan selection
+            if (!selectedPlan) {
+                alert('Please select a plan before placing your order.');
+                return;
+            }
+            
+            // Get form data
+            const formData = new FormData(orderForm);
+            const data = Object.fromEntries(formData);
+            
+            // Simple validation
+            if (!data.firstName || !data.lastName || !data.email || !data.phone || !data.university || !data.campus) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+            
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(data.email)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+            
+            // Phone validation
+            const phoneRegex = /^(\+27|0)[1-9][0-9]{8}$/;
+            if (!phoneRegex.test(data.phone.replace(/\s/g, ''))) {
+                alert('Please enter a valid South African phone number.');
+                return;
+            }
+            
+            // Simulate form submission
+            const originalText = submitBtn.textContent;
+            
+            submitBtn.textContent = 'Processing...';
+            submitBtn.disabled = true;
+            
+            // Simulate API call
+            setTimeout(() => {
+                alert(`Thank you for your order! Your ${selectedPlan.name} plan has been confirmed. We'll deliver your SIM card to ${data.campus} within 2-3 business days. You'll receive a confirmation email shortly.`);
+                orderForm.reset();
+                planOptions.forEach(opt => opt.classList.remove('selected'));
+                selectedPlan = null;
+                updateTotal();
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }, 2000);
+        });
+
         // Back to Top Button
         const backToTop = document.getElementById('backToTop');
         
@@ -520,6 +990,29 @@
                 top: 0,
                 behavior: 'smooth'
             });
+        });
+
+        // Add loading animation for cards
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.plan-option, .benefit-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
         });
     </script>
 </body>

@@ -36,6 +36,7 @@
             line-height: 1.6;
             color: var(--text-dark);
             background: var(--gray-50);
+            overflow-x: hidden;
             padding-top: 70px;
         }
 
@@ -104,6 +105,34 @@
             box-shadow: var(--shadow-lg);
         }
 
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .hamburger {
+            width: 25px;
+            height: 3px;
+            background: var(--text-dark);
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        .mobile-menu-toggle.active .hamburger:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .mobile-menu-toggle.active .hamburger:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.active .hamburger:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
         /* Plans Section */
         .plans-section {
             padding: 4rem 1rem;
@@ -116,7 +145,7 @@
 
         .section-header {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
         }
 
         .section-title {
@@ -225,25 +254,28 @@
         }
 
         .faq-item {
-            margin-bottom: 1rem;
-            border: 1px solid var(--gray-100);
+            background: var(--gray-50);
             border-radius: 8px;
+            margin-bottom: 1rem;
             overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item.active {
+            background: var(--green-50);
         }
 
         .faq-question {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--text-dark);
             padding: 1.5rem;
             cursor: pointer;
+            font-weight: 600;
+            color: var(--text-dark);
             position: relative;
-            background: var(--white);
-            transition: background-color 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .faq-question:hover {
-            background: var(--gray-50);
+            background: var(--green-100);
         }
 
         .faq-question::after {
@@ -262,11 +294,11 @@
         }
 
         .faq-answer {
-            color: var(--text-gray);
             padding: 0 1.5rem;
             max-height: 0;
             overflow: hidden;
             transition: all 0.3s ease;
+            color: var(--text-gray);
         }
 
         .faq-item.active .faq-answer {
@@ -325,21 +357,6 @@
             color: #9ca3af;
         }
 
-        /* Mobile Styles */
-        @media (max-width: 768px) {
-            .nav-menu {
-                display: none;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .plan-card.featured {
-                transform: none;
-            }
-        }
-
         /* Back to Top Button */
         .back-to-top {
             position: fixed;
@@ -371,6 +388,82 @@
             background: var(--dark-green);
             transform: translateY(-2px);
         }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: var(--white);
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                padding-top: 2rem;
+                transition: left 0.3s ease;
+                box-shadow: var(--shadow);
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-menu li {
+                margin: 1rem 0;
+            }
+
+            .nav-menu a {
+                font-size: 1.2rem;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .cta-button {
+                display: none;
+            }
+
+            .plans-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .plan-card.featured {
+                transform: none;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-container {
+                padding: 0 0.5rem;
+            }
+
+            .plans-section,
+            .faq-section {
+                padding: 3rem 0.5rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .plan-card {
+                padding: 1.5rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -382,7 +475,7 @@
                 Campus Mobile
             </a>
             
-            <ul class="nav-menu">
+            <ul class="nav-menu" id="navMenu">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="plans.html">Plans</a></li>
                 <li><a href="how-it-works.html">How It Works</a></li>
@@ -390,6 +483,12 @@
             </ul>
             
             <a href="order-sim.html" class="cta-button">Order SIM</a>
+            
+            <div class="mobile-menu-toggle" id="mobileToggle">
+                <div class="hamburger"></div>
+                <div class="hamburger"></div>
+                <div class="hamburger"></div>
+            </div>
         </nav>
     </header>
 
@@ -403,6 +502,33 @@
 
             <div class="plans-grid">
                 <div class="plan-card">
+                    <h3 class="plan-name">Hourly</h3>
+                    <div class="plan-price">R5<span>/hour</span></div>
+                    <ul class="plan-features">
+                        <li>500MB data</li>
+                        <li>WhatsApp zero-rated</li>
+                        <li>Perfect for quick checks</li>
+                        <li>Instant activation</li>
+                        <li>No contract</li>
+                    </ul>
+                    <a href="order-sim.html" class="cta-button" style="width: 100%; text-align: center; display: block;">Choose Plan</a>
+                </div>
+
+                <div class="plan-card featured">
+                    <div class="plan-badge">Most Popular</div>
+                    <h3 class="plan-name">Student Special</h3>
+                    <div class="plan-price">R199<span>/month</span></div>
+                    <ul class="plan-features">
+                        <li>25GB data</li>
+                        <li>NSFAS discount applied</li>
+                        <li>Educational sites free</li>
+                        <li>30-day validity</li>
+                        <li>Student ID required</li>
+                    </ul>
+                    <a href="order-sim.html" class="cta-button" style="width: 100%; text-align: center; display: block;">Choose Plan</a>
+                </div>
+
+                <div class="plan-card">
                     <h3 class="plan-name">Daily</h3>
                     <div class="plan-price">R15<span>/day</span></div>
                     <ul class="plan-features">
@@ -415,8 +541,7 @@
                     <a href="order-sim.html" class="cta-button" style="width: 100%; text-align: center; display: block;">Choose Plan</a>
                 </div>
 
-                <div class="plan-card featured">
-                    <div class="plan-badge">Most Popular</div>
+                <div class="plan-card">
                     <h3 class="plan-name">Weekly</h3>
                     <div class="plan-price">R89<span>/week</span></div>
                     <ul class="plan-features">
@@ -436,6 +561,19 @@
                         <li>50GB data</li>
                         <li>Unlimited social media</li>
                         <li>All educational sites free</li>
+                        <li>30-day validity</li>
+                        <li>No contract</li>
+                    </ul>
+                    <a href="order-sim.html" class="cta-button" style="width: 100%; text-align: center; display: block;">Choose Plan</a>
+                </div>
+
+                <div class="plan-card">
+                    <h3 class="plan-name">Unlimited</h3>
+                    <div class="plan-price">R499<span>/month</span></div>
+                    <ul class="plan-features">
+                        <li>Unlimited data</li>
+                        <li>Unlimited calls & SMS</li>
+                        <li>All content zero-rated</li>
                         <li>30-day validity</li>
                         <li>No contract</li>
                     </ul>
@@ -477,6 +615,16 @@
                 <div class="faq-question">Is there a contract?</div>
                 <div class="faq-answer">No, all our plans are contract-free. You only pay for the data you need, when you need it.</div>
             </div>
+
+            <div class="faq-item">
+                <div class="faq-question">What is zero-rated content?</div>
+                <div class="faq-answer">Zero-rated content means you can access certain websites and apps without using your data allowance. This includes WhatsApp, educational sites, and social media platforms.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">How do I qualify for student discounts?</div>
+                <div class="faq-answer">Simply provide your student ID or NSFAS reference number when ordering. We'll automatically apply the appropriate discount to your plan.</div>
+            </div>
         </div>
     </section>
 
@@ -505,10 +653,10 @@
                 <div class="footer-section">
                     <h3>Support</h3>
                     <ul>
-                        <li><a href="support.html">Help Center</a></li>
-                        <li><a href="#">WhatsApp</a></li>
+                        <li><a href="404.html">Help Center</a></li>
+                        <li><a href="404.html">WhatsApp</a></li>
                         <li><a href="contact.html">Contact Us</a></li>
-                        <li><a href="account.html">My Account</a></li>
+                        <li><a href="404.html">My Account</a></li>
                     </ul>
                 </div>
                 
@@ -516,15 +664,15 @@
                     <h3>Company</h3>
                     <ul>
                         <li><a href="about.html">About Us</a></li>
-                        <li><a href="#">Careers</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="404.html">Careers</a></li>
+                        <li><a href="404.html">Privacy Policy</a></li>
+                        <li><a href="404.html">Terms of Service</a></li>
                     </ul>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2025 Campus Mobile. All rights reserved. | Powered by MTN Network</p>
+                <p>&copy; 2025 Campus Mobile. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -533,6 +681,32 @@
     <button class="back-to-top" id="backToTop">↑</button>
 
     <script>
+        // Mobile Menu Toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navMenu = document.getElementById('navMenu');
+        
+        mobileToggle.addEventListener('click', function() {
+            mobileToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        const navLinks = document.querySelectorAll('.nav-menu a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!mobileToggle.contains(e.target) && !navMenu.contains(e.target)) {
+                mobileToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        });
+
         // Header scroll effect
         const header = document.querySelector('.header');
         let lastScrollTop = 0;
@@ -586,6 +760,29 @@
                 top: 0,
                 behavior: 'smooth'
             });
+        });
+
+        // Add loading animation for cards
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.plan-card, .faq-item').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
         });
     </script>
 </body>

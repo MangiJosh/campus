@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - Campus Mobile</title>
-    <meta name="description" content="Get in touch with Campus Mobile. We're here to help with any questions about our student SIM cards and data plans.">
+    <meta name="description" content="Get in touch with Campus Mobile. We're here to help with any questions about our student mobile plans and services.">
     <link rel="icon" type="image/png" href="icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,6 +36,7 @@
             line-height: 1.6;
             color: var(--text-dark);
             background: var(--gray-50);
+            overflow-x: hidden;
             padding-top: 70px;
         }
 
@@ -104,32 +105,32 @@
             box-shadow: var(--shadow-lg);
         }
 
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1920');
-            background-size: cover;
-            background-position: center;
-            padding: 100px 1rem;
-            text-align: center;
-            color: var(--white);
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 0.5rem;
         }
 
-        .hero-container {
-            max-width: 800px;
-            margin: 0 auto;
+        .hamburger {
+            width: 25px;
+            height: 3px;
+            background: var(--text-dark);
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
         }
 
-        .hero h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
+        .mobile-menu-toggle.active .hamburger:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
         }
 
-        .hero p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            max-width: 600px;
-            margin: 0 auto;
+        .mobile-menu-toggle.active .hamburger:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.active .hamburger:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
         }
 
         /* Contact Section */
@@ -140,60 +141,95 @@
         .contact-container {
             max-width: 1200px;
             margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            color: var(--text-gray);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
+            margin-top: 2rem;
         }
 
         .contact-info {
+            background: var(--white);
             padding: 2rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
         }
 
-        .contact-info h2 {
-            font-size: 2rem;
-            font-weight: 700;
+        .contact-info h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
             margin-bottom: 1.5rem;
             color: var(--text-dark);
         }
 
-        .contact-info p {
-            color: var(--text-gray);
-            margin-bottom: 2rem;
-        }
-
-        .contact-methods {
-            display: grid;
-            gap: 1.5rem;
-        }
-
-        .contact-method {
+        .contact-item {
             display: flex;
-            align-items: flex-start;
-            gap: 1rem;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: var(--gray-50);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: var(--green-50);
+            transform: translateX(5px);
         }
 
         .contact-icon {
             width: 40px;
             height: 40px;
-            background: var(--green-50);
+            background: var(--primary-green);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--primary-green);
+            margin-right: 1rem;
+            color: var(--white);
             font-size: 1.2rem;
         }
 
-        .contact-details h3 {
-            font-size: 1.1rem;
+        .contact-details h4 {
             font-weight: 600;
-            margin-bottom: 0.25rem;
             color: var(--text-dark);
+            margin-bottom: 0.25rem;
         }
 
         .contact-details p {
             color: var(--text-gray);
-            margin-bottom: 0;
+            font-size: 0.9rem;
+        }
+
+        .contact-details a {
+            color: var(--primary-green);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-details a:hover {
+            text-decoration: underline;
         }
 
         /* Contact Form */
@@ -204,14 +240,21 @@
             box-shadow: var(--shadow);
         }
 
+        .contact-form h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+        }
+
         .form-group {
             margin-bottom: 1.5rem;
         }
 
         .form-group label {
             display: block;
-            font-weight: 500;
             margin-bottom: 0.5rem;
+            font-weight: 500;
             color: var(--text-dark);
         }
 
@@ -220,11 +263,11 @@
         .form-group select {
             width: 100%;
             padding: 0.75rem;
-            border: 1px solid #e5e7eb;
+            border: 2px solid var(--gray-100);
             border-radius: 8px;
-            font-family: inherit;
             font-size: 1rem;
             transition: border-color 0.3s ease;
+            font-family: inherit;
         }
 
         .form-group input:focus,
@@ -232,30 +275,97 @@
         .form-group select:focus {
             outline: none;
             border-color: var(--primary-green);
-            box-shadow: 0 0 0 3px var(--green-100);
         }
 
         .form-group textarea {
-            min-height: 150px;
             resize: vertical;
+            min-height: 120px;
         }
 
-        .submit-button {
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .submit-btn {
             background: var(--primary-green);
             color: var(--white);
             padding: 1rem 2rem;
             border: none;
             border-radius: 8px;
+            font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
             width: 100%;
         }
 
-        .submit-button:hover {
+        .submit-btn:hover {
             background: var(--dark-green);
             transform: translateY(-2px);
             box-shadow: var(--shadow-lg);
+        }
+
+        /* Campus Locations */
+        .locations-section {
+            padding: 4rem 1rem;
+            background: var(--white);
+        }
+
+        .locations-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .locations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .location-card {
+            background: var(--gray-50);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .location-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .location-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            color: var(--white);
+            font-size: 1.5rem;
+        }
+
+        .location-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .location-address {
+            color: var(--text-gray);
+            margin-bottom: 1rem;
+        }
+
+        .location-hours {
+            color: var(--text-gray);
+            font-size: 0.9rem;
         }
 
         /* Footer */
@@ -344,16 +454,83 @@
         /* Mobile Styles */
         @media (max-width: 768px) {
             .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: var(--white);
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                padding-top: 2rem;
+                transition: left 0.3s ease;
+                box-shadow: var(--shadow);
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-menu li {
+                margin: 1rem 0;
+            }
+
+            .nav-menu a {
+                font-size: 1.2rem;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .cta-button {
                 display: none;
             }
 
-            .hero h1 {
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .locations-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
                 font-size: 2rem;
             }
 
-            .contact-container {
-                grid-template-columns: 1fr;
-                gap: 2rem;
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-container {
+                padding: 0 0.5rem;
+            }
+
+            .contact-section,
+            .locations-section {
+                padding: 3rem 0.5rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .contact-info,
+            .contact-form,
+            .location-card {
+                padding: 1.5rem;
             }
         }
     </style>
@@ -367,7 +544,7 @@
                 Campus Mobile
             </a>
             
-            <ul class="nav-menu">
+            <ul class="nav-menu" id="navMenu">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="plans.html">Plans</a></li>
                 <li><a href="how-it-works.html">How It Works</a></li>
@@ -375,99 +552,167 @@
             </ul>
             
             <a href="order-sim.html" class="cta-button">Order SIM</a>
+            
+            <div class="mobile-menu-toggle" id="mobileToggle">
+                <div class="hamburger"></div>
+                <div class="hamburger"></div>
+                <div class="hamburger"></div>
+            </div>
         </nav>
     </header>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-container">
-            <h1>Contact Us</h1>
-            <p>We're here to help with any questions about our student SIM cards and data plans.</p>
-        </div>
-    </section>
 
     <!-- Contact Section -->
     <section class="contact-section">
         <div class="contact-container">
-            <div class="contact-info">
-                <h2>Get in Touch</h2>
-                <p>Have questions about our student SIM cards or data plans? We're here to help. Choose the best way to reach us below.</p>
+            <div class="section-header">
+                <h1 class="section-title">Get in Touch</h1>
+                <p class="section-subtitle">Have questions about our student mobile plans? We're here to help! Reach out to us through any of the channels below.</p>
+            </div>
 
-                <div class="contact-methods">
-                    <div class="contact-method">
-                        <div class="contact-icon">📱</div>
-                        <div class="contact-details">
-                            <h3>WhatsApp Support</h3>
-                            <p>087 550 0000</p>
-                            <p>Available 24/7 for quick assistance</p>
-                        </div>
-                    </div>
-
-                    <div class="contact-method">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    
+                    <div class="contact-item">
                         <div class="contact-icon">📧</div>
                         <div class="contact-details">
-                            <h3>Email</h3>
-                            <p>support@getcampus.co.za</p>
-                            <p>Response within 24 hours</p>
+                            <h4>Email Support</h4>
+                            <p><a href="mailto:support@campusmobile.co.za">support@campusmobile.co.za</a></p>
                         </div>
                     </div>
 
-                    <div class="contact-method">
+                    <div class="contact-item">
+                        <div class="contact-icon">📱</div>
+                        <div class="contact-details">
+                            <h4>WhatsApp Support</h4>
+                            <p><a href="https://wa.me/27821234567">+27 82 123 4567</a></p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div class="contact-details">
+                            <h4>Phone Support</h4>
+                            <p><a href="tel:+27123456789">+27 12 345 6789</a></p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
                         <div class="contact-icon">💬</div>
                         <div class="contact-details">
-                            <h3>Live Chat</h3>
-                            <p>Available Monday to Friday, 8am - 5pm</p>
-                            <p>Click the chat icon in the bottom right</p>
+                            <h4>Live Chat</h4>
+                            <p>Available 24/7 on our website</p>
                         </div>
                     </div>
 
-                    <div class="contact-method">
-                        <div class="contact-icon">🏢</div>
+                    <div class="contact-item">
+                        <div class="contact-icon">⏰</div>
                         <div class="contact-details">
-                            <h3>Head Office</h3>
-                            <p>123 Campus Street</p>
-                            <p>Pretoria, South Africa</p>
+                            <h4>Support Hours</h4>
+                            <p>Monday - Friday: 8AM - 8PM<br>Weekends: 9AM - 6PM</p>
                         </div>
                     </div>
                 </div>
+
+                <div class="contact-form">
+                    <h3>Send us a Message</h3>
+                    <form id="contactForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name *</label>
+                                <input type="text" id="firstName" name="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name *</label>
+                                <input type="text" id="lastName" name="lastName" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">Subject *</label>
+                            <select id="subject" name="subject" required>
+                                <option value="">Select a subject</option>
+                                <option value="general">General Inquiry</option>
+                                <option value="technical">Technical Support</option>
+                                <option value="billing">Billing & Payments</option>
+                                <option value="plans">Plans & Pricing</option>
+                                <option value="order">Order Status</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" placeholder="Tell us how we can help you..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Campus Locations Section -->
+    <section class="locations-section">
+        <div class="locations-container">
+            <div class="section-header">
+                <h2 class="section-title">Visit Our Campus Locations</h2>
+                <p class="section-subtitle">Find us at these major universities and campuses across South Africa.</p>
             </div>
 
-            <div class="contact-form">
-                <form id="contactForm">
-                    <div class="form-group">
-                        <label for="name">Full Name</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
+            <div class="locations-grid">
+                <div class="location-card">
+                    <div class="location-icon">🎓</div>
+                    <h3 class="location-name">University of Cape Town</h3>
+                    <p class="location-address">Upper Campus, Student Centre<br>Cape Town, Western Cape</p>
+                    <p class="location-hours">Mon-Fri: 8AM-6PM<br>Sat: 9AM-2PM</p>
+                </div>
 
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
+                <div class="location-card">
+                    <div class="location-icon">🎓</div>
+                    <h3 class="location-name">University of the Witwatersrand</h3>
+                    <p class="location-address">Student Union Building<br>Johannesburg, Gauteng</p>
+                    <p class="location-hours">Mon-Fri: 8AM-6PM<br>Sat: 9AM-2PM</p>
+                </div>
 
-                    <div class="form-group">
-                        <label for="phone">Phone Number</label>
-                        <input type="tel" id="phone" name="phone" required>
-                    </div>
+                <div class="location-card">
+                    <div class="location-icon">🎓</div>
+                    <h3 class="location-name">Stellenbosch University</h3>
+                    <p class="location-address">Neelsie Student Centre<br>Stellenbosch, Western Cape</p>
+                    <p class="location-hours">Mon-Fri: 8AM-6PM<br>Sat: 9AM-2PM</p>
+                </div>
 
-                    <div class="form-group">
-                        <label for="subject">Subject</label>
-                        <select id="subject" name="subject" required>
-                            <option value="">Select a subject</option>
-                            <option value="general">General Inquiry</option>
-                            <option value="technical">Technical Support</option>
-                            <option value="billing">Billing Question</option>
-                            <option value="order">Order Status</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
+                <div class="location-card">
+                    <div class="location-icon">🎓</div>
+                    <h3 class="location-name">University of Pretoria</h3>
+                    <p class="location-address">Student Centre<br>Pretoria, Gauteng</p>
+                    <p class="location-hours">Mon-Fri: 8AM-6PM<br>Sat: 9AM-2PM</p>
+                </div>
 
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" required></textarea>
-                    </div>
+                <div class="location-card">
+                    <div class="location-icon">🎓</div>
+                    <h3 class="location-name">Rhodes University</h3>
+                    <p class="location-address">Student Union<br>Grahamstown, Eastern Cape</p>
+                    <p class="location-hours">Mon-Fri: 8AM-6PM<br>Sat: 9AM-2PM</p>
+                </div>
 
-                    <button type="submit" class="submit-button">Send Message</button>
-                </form>
+                <div class="location-card">
+                    <div class="location-icon">🎓</div>
+                    <h3 class="location-name">University of KwaZulu-Natal</h3>
+                    <p class="location-address">Student Centre<br>Durban, KwaZulu-Natal</p>
+                    <p class="location-hours">Mon-Fri: 8AM-6PM<br>Sat: 9AM-2PM</p>
+                </div>
             </div>
         </div>
     </section>
@@ -497,10 +742,10 @@
                 <div class="footer-section">
                     <h3>Support</h3>
                     <ul>
-                        <li><a href="support.html">Help Center</a></li>
-                        <li><a href="#">WhatsApp</a></li>
+                        <li><a href="404.html">Help Center</a></li>
+                        <li><a href="404.html">WhatsApp</a></li>
                         <li><a href="contact.html">Contact Us</a></li>
-                        <li><a href="account.html">My Account</a></li>
+                        <li><a href="404.html">My Account</a></li>
                     </ul>
                 </div>
                 
@@ -508,15 +753,15 @@
                     <h3>Company</h3>
                     <ul>
                         <li><a href="about.html">About Us</a></li>
-                        <li><a href="#">Careers</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="404.html">Careers</a></li>
+                        <li><a href="404.html">Privacy Policy</a></li>
+                        <li><a href="404.html">Terms of Service</a></li>
                     </ul>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2025 Campus Mobile. All rights reserved. | Powered by MTN Network</p>
+                <p>&copy; 2025 Campus Mobile. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -525,6 +770,32 @@
     <button class="back-to-top" id="backToTop">↑</button>
 
     <script>
+        // Mobile Menu Toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navMenu = document.getElementById('navMenu');
+        
+        mobileToggle.addEventListener('click', function() {
+            mobileToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        const navLinks = document.querySelectorAll('.nav-menu a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!mobileToggle.contains(e.target) && !navMenu.contains(e.target)) {
+                mobileToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        });
+
         // Header scroll effect
         const header = document.querySelector('.header');
         let lastScrollTop = 0;
@@ -541,6 +812,45 @@
             }
             
             lastScrollTop = scrollTop;
+        });
+
+        // Contact Form Handling
+        const contactForm = document.getElementById('contactForm');
+        
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(contactForm);
+            const data = Object.fromEntries(formData);
+            
+            // Simple validation
+            if (!data.firstName || !data.lastName || !data.email || !data.subject || !data.message) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+            
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(data.email)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+            
+            // Simulate form submission
+            const submitBtn = contactForm.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+            
+            // Simulate API call
+            setTimeout(() => {
+                alert('Thank you for your message! We\'ll get back to you within 24 hours.');
+                contactForm.reset();
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }, 2000);
         });
 
         // Back to Top Button
@@ -561,16 +871,27 @@
             });
         });
 
-        // Form Submission
-        const contactForm = document.getElementById('contactForm');
-        
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Here you would typically handle the form submission
-            // For now, we'll just show an alert
-            alert('Thank you for your message! We will get back to you soon.');
-            contactForm.reset();
+        // Add loading animation for cards
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.contact-item, .location-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
         });
     </script>
 </body>

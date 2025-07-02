@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recharge - Campus Mobile</title>
-    <meta name="description" content="Recharge your Campus Mobile SIM card with our flexible data bundles. Choose from daily, weekly, or monthly plans.">
+    <meta name="description" content="Recharge your Campus Mobile data bundle. Quick and easy top-ups with multiple payment options.">
     <link rel="icon" type="image/png" href="icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,6 +36,7 @@
             line-height: 1.6;
             color: var(--text-dark);
             background: var(--gray-50);
+            overflow-x: hidden;
             padding-top: 70px;
         }
 
@@ -104,32 +105,32 @@
             box-shadow: var(--shadow-lg);
         }
 
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.pexels.com/photos/7567443/pexels-photo-7567443.jpeg?auto=compress&cs=tinysrgb&w=1920');
-            background-size: cover;
-            background-position: center;
-            padding: 100px 1rem;
-            text-align: center;
-            color: var(--white);
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 0.5rem;
         }
 
-        .hero-container {
-            max-width: 800px;
-            margin: 0 auto;
+        .hamburger {
+            width: 25px;
+            height: 3px;
+            background: var(--text-dark);
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
         }
 
-        .hero h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
+        .mobile-menu-toggle.active .hamburger:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
         }
 
-        .hero p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            max-width: 600px;
-            margin: 0 auto;
+        .mobile-menu-toggle.active .hamburger:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.active .hamburger:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
         }
 
         /* Recharge Section */
@@ -140,101 +141,56 @@
         .recharge-container {
             max-width: 1200px;
             margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            color: var(--text-gray);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .recharge-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
+            margin-top: 2rem;
         }
 
-        .recharge-info {
-            padding: 2rem;
-        }
-
-        .recharge-info h2 {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            color: var(--text-dark);
-        }
-
-        .recharge-info p {
-            color: var(--text-gray);
-            margin-bottom: 2rem;
-        }
-
-        .recharge-methods {
-            display: grid;
-            gap: 1.5rem;
-        }
-
-        .recharge-method {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-            background: var(--white);
-            padding: 1.5rem;
-            border-radius: 12px;
-            box-shadow: var(--shadow);
-            transition: all 0.3s ease;
-        }
-
-        .recharge-method:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .recharge-icon {
-            width: 40px;
-            height: 40px;
-            background: var(--green-50);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary-green);
-            font-size: 1.2rem;
-        }
-
-        .recharge-details h3 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 0.25rem;
-            color: var(--text-dark);
-        }
-
-        .recharge-details p {
-            color: var(--text-gray);
-            margin-bottom: 0;
-        }
-
-        /* Recharge Form */
         .recharge-form {
             background: var(--white);
             padding: 2rem;
             border-radius: 12px;
             box-shadow: var(--shadow);
-            height: auto;
-            transition: none;
         }
 
-        .recharge-form form {
-            display: block;
+        .recharge-form h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
         }
 
         .form-group {
             margin-bottom: 1.5rem;
-            opacity: 1;
-            transition: opacity 0.3s ease;
-        }
-
-        .form-group.hidden {
-            display: none;
-            opacity: 0;
         }
 
         .form-group label {
             display: block;
-            font-weight: 500;
             margin-bottom: 0.5rem;
+            font-weight: 500;
             color: var(--text-dark);
         }
 
@@ -242,36 +198,189 @@
         .form-group select {
             width: 100%;
             padding: 0.75rem;
-            border: 1px solid #e5e7eb;
+            border: 2px solid var(--gray-100);
             border-radius: 8px;
-            font-family: inherit;
             font-size: 1rem;
             transition: border-color 0.3s ease;
+            font-family: inherit;
         }
 
         .form-group input:focus,
         .form-group select:focus {
             outline: none;
             border-color: var(--primary-green);
-            box-shadow: 0 0 0 3px var(--green-100);
         }
 
-        .submit-button {
+        .submit-btn {
             background: var(--primary-green);
             color: var(--white);
             padding: 1rem 2rem;
             border: none;
             border-radius: 8px;
+            font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
             width: 100%;
         }
 
-        .submit-button:hover {
+        .submit-btn:hover {
             background: var(--dark-green);
             transform: translateY(-2px);
             box-shadow: var(--shadow-lg);
+        }
+
+        .submit-btn:disabled {
+            background: var(--text-gray);
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Bundle Selection */
+        .bundle-selection {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 100px;
+        }
+
+        .bundle-selection h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+        }
+
+        .bundle-option {
+            border: 2px solid var(--gray-100);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .bundle-option:hover {
+            border-color: var(--primary-green);
+            background: var(--green-50);
+        }
+
+        .bundle-option.selected {
+            border-color: var(--primary-green);
+            background: var(--green-50);
+        }
+
+        .bundle-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .bundle-name {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .bundle-price {
+            font-weight: 700;
+            color: var(--primary-green);
+        }
+
+        .bundle-features {
+            list-style: none;
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+
+        .bundle-features li {
+            margin-bottom: 0.25rem;
+        }
+
+        .bundle-features li::before {
+            content: "✓";
+            color: var(--primary-green);
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .recharge-total {
+            border-top: 2px solid var(--gray-100);
+            padding-top: 1rem;
+            margin-top: 1rem;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .total-row.final {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--primary-green);
+            border-top: 1px solid var(--gray-100);
+            padding-top: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Payment Methods */
+        .payment-section {
+            padding: 4rem 1rem;
+            background: var(--white);
+        }
+
+        .payment-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .payment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .payment-card {
+            text-align: center;
+            padding: 2rem;
+            background: var(--gray-50);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .payment-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .payment-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            color: var(--white);
+            font-size: 1.5rem;
+        }
+
+        .payment-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .payment-description {
+            color: var(--text-gray);
+            line-height: 1.6;
         }
 
         /* Footer */
@@ -360,16 +469,83 @@
         /* Mobile Styles */
         @media (max-width: 768px) {
             .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: var(--white);
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                padding-top: 2rem;
+                transition: left 0.3s ease;
+                box-shadow: var(--shadow);
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-menu li {
+                margin: 1rem 0;
+            }
+
+            .nav-menu a {
+                font-size: 1.2rem;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .cta-button {
                 display: none;
             }
 
-            .hero h1 {
+            .recharge-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .bundle-selection {
+                position: static;
+            }
+
+            .payment-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
                 font-size: 2rem;
             }
 
-            .recharge-container {
-                grid-template-columns: 1fr;
-                gap: 2rem;
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-container {
+                padding: 0 0.5rem;
+            }
+
+            .recharge-section,
+            .payment-section {
+                padding: 3rem 0.5rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .recharge-form,
+            .bundle-selection,
+            .payment-card {
+                padding: 1.5rem;
             }
         }
     </style>
@@ -383,7 +559,7 @@
                 Campus Mobile
             </a>
             
-            <ul class="nav-menu">
+            <ul class="nav-menu" id="navMenu">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="plans.html">Plans</a></li>
                 <li><a href="how-it-works.html">How It Works</a></li>
@@ -391,118 +567,172 @@
             </ul>
             
             <a href="order-sim.html" class="cta-button">Order SIM</a>
+            
+            <div class="mobile-menu-toggle" id="mobileToggle">
+                <div class="hamburger"></div>
+                <div class="hamburger"></div>
+                <div class="hamburger"></div>
+            </div>
         </nav>
     </header>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-container">
-            <h1>Recharge Your SIM</h1>
-            <p>Choose from our flexible data bundles and recharge your SIM card instantly.</p>
-        </div>
-    </section>
 
     <!-- Recharge Section -->
     <section class="recharge-section">
         <div class="recharge-container">
-            <div class="recharge-info">
-                <h2>Recharge Options</h2>
-                <p>Choose the most convenient way to recharge your Campus Mobile SIM card. All methods are instant and secure.</p>
+            <div class="section-header">
+                <h1 class="section-title">Recharge Your Data</h1>
+                <p class="section-subtitle">Top up your Campus Mobile data bundle quickly and securely. Multiple payment options available.</p>
+            </div>
 
-                <div class="recharge-methods">
-                    <div class="recharge-method">
-                        <div class="recharge-icon">📱</div>
-                        <div class="recharge-details">
-                            <h3>Campus Mobile App</h3>
-                            <p>Download our app for the easiest way to recharge. Available on Android and iOS.</p>
+            <div class="recharge-grid">
+                <div class="recharge-form">
+                    <h3>Recharge Details</h3>
+                    <form id="rechargeForm">
+                        <div class="form-group">
+                            <label for="phoneNumber">Phone Number *</label>
+                            <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="Enter your Campus Mobile number" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="For receipt and confirmation">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="paymentMethod">Payment Method *</label>
+                            <select id="paymentMethod" name="paymentMethod" required>
+                                <option value="">Select payment method</option>
+                                <option value="ozow">Ozow (Instant EFT)</option>
+                                <option value="snapscan">SnapScan</option>
+                                <option value="yoco">Yoco</option>
+                                <option value="card">Credit/Debit Card</option>
+                                <option value="airtime">Airtime Transfer</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="submit-btn" id="submitBtn">Proceed to Payment</button>
+                    </form>
+                </div>
+
+                <div class="bundle-selection">
+                    <h3>Select Bundle</h3>
+                    
+                    <div class="bundle-option" data-bundle="hourly" data-price="5">
+                        <div class="bundle-header">
+                            <span class="bundle-name">Hourly</span>
+                            <span class="bundle-price">R5</span>
+                        </div>
+                        <ul class="bundle-features">
+                            <li>500MB data</li>
+                            <li>WhatsApp zero-rated</li>
+                            <li>1 hour validity</li>
+                        </ul>
+                    </div>
+
+                    <div class="bundle-option" data-bundle="daily" data-price="15">
+                        <div class="bundle-header">
+                            <span class="bundle-name">Daily</span>
+                            <span class="bundle-price">R15</span>
+                        </div>
+                        <ul class="bundle-features">
+                            <li>2GB data</li>
+                            <li>All social media zero-rated</li>
+                            <li>24 hours validity</li>
+                        </ul>
+                    </div>
+
+                    <div class="bundle-option" data-bundle="weekly" data-price="89">
+                        <div class="bundle-header">
+                            <span class="bundle-name">Weekly</span>
+                            <span class="bundle-price">R89</span>
+                        </div>
+                        <ul class="bundle-features">
+                            <li>10GB data</li>
+                            <li>Unlimited WhatsApp</li>
+                            <li>7 days validity</li>
+                        </ul>
+                    </div>
+
+                    <div class="bundle-option" data-bundle="monthly" data-price="299">
+                        <div class="bundle-header">
+                            <span class="bundle-name">Monthly</span>
+                            <span class="bundle-price">R299</span>
+                        </div>
+                        <ul class="bundle-features">
+                            <li>50GB data</li>
+                            <li>Unlimited social media</li>
+                            <li>30 days validity</li>
+                        </ul>
+                    </div>
+
+                    <div class="recharge-total">
+                        <div class="total-row">
+                            <span>Bundle Cost</span>
+                            <span id="bundleCost">R0</span>
+                        </div>
+                        <div class="total-row">
+                            <span>Processing Fee</span>
+                            <span>R0</span>
+                        </div>
+                        <div class="total-row final">
+                            <span>Total</span>
+                            <span id="totalCost">R0</span>
                         </div>
                     </div>
 
-                    <div class="recharge-method">
-                        <div class="recharge-icon">💳</div>
-                        <div class="recharge-details">
-                            <h3>Online Banking</h3>
-                            <p>Use your bank's app or website to recharge. Instant activation after payment.</p>
-                        </div>
-                    </div>
-
-                    <div class="recharge-method">
-                        <div class="recharge-icon">📞</div>
-                        <div class="recharge-details">
-                            <h3>USSD Code</h3>
-                            <p>Dial *123# and follow the prompts to recharge your SIM card.</p>
-                        </div>
+                    <div style="margin-top: 1.5rem; padding: 1rem; background: var(--green-50); border-radius: 8px; border-left: 4px solid var(--primary-green);">
+                        <h4 style="color: var(--primary-green); margin-bottom: 0.5rem;">Instant Activation</h4>
+                        <p style="color: var(--text-gray); font-size: 0.9rem; margin: 0;">Your data bundle will be activated immediately after successful payment.</p>
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <div class="recharge-form">
-                <h2 style="margin-bottom: 1.5rem; color: var(--text-dark);">Quick Recharge</h2>
-                <form id="rechargeForm">
-                    <div class="form-group">
-                        <label for="rechargeType">Recharge Type</label>
-                        <select id="rechargeType" name="rechargeType" required>
-                            <option value="">Select recharge type</option>
-                            <option value="data">Data Bundle</option>
-                            <option value="whatsapp">WhatsApp Data</option>
-                            <option value="airtime">Airtime</option>
-                        </select>
-                    </div>
+    <!-- Payment Methods Section -->
+    <section class="payment-section">
+        <div class="payment-container">
+            <div class="section-header">
+                <h2 class="section-title">Secure Payment Options</h2>
+                <p class="section-subtitle">Choose from multiple secure payment methods designed for South African students.</p>
+            </div>
 
-                    <div class="form-group">
-                        <label for="phone">Phone Number</label>
-                        <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
-                    </div>
+            <div class="payment-grid">
+                <div class="payment-card">
+                    <div class="payment-icon">💳</div>
+                    <h3 class="payment-title">Ozow (Instant EFT)</h3>
+                    <p class="payment-description">Instant bank transfers from any South African bank. No registration required.</p>
+                </div>
 
-                    <div class="form-group" id="dataPlanGroup" style="display: none;">
-                        <label for="plan">Select Data Plan</label>
-                        <select id="plan" name="plan">
-                            <option value="">Choose a plan</option>
-                            <option value="daily-1gb">Daily - 1GB (R15)</option>
-                            <option value="daily-2gb">Daily - 2GB (R25)</option>
-                            <option value="weekly-5gb">Weekly - 5GB (R50)</option>
-                            <option value="weekly-10gb">Weekly - 10GB (R90)</option>
-                            <option value="monthly-20gb">Monthly - 20GB (R150)</option>
-                            <option value="monthly-50gb">Monthly - 50GB (R300)</option>
-                            <option value="monthly-100gb">Monthly - 100GB (R500)</option>
-                        </select>
-                    </div>
+                <div class="payment-card">
+                    <div class="payment-icon">📱</div>
+                    <h3 class="payment-title">SnapScan</h3>
+                    <p class="payment-description">Quick and easy payments using your smartphone. Scan and pay instantly.</p>
+                </div>
 
-                    <div class="form-group" id="whatsappPlanGroup" style="display: none;">
-                        <label for="whatsappPlan">Select WhatsApp Plan</label>
-                        <select id="whatsappPlan" name="whatsappPlan">
-                            <option value="">Choose a plan</option>
-                            <option value="whatsapp-daily">Daily - Unlimited WhatsApp (R5)</option>
-                            <option value="whatsapp-weekly">Weekly - Unlimited WhatsApp (R25)</option>
-                            <option value="whatsapp-monthly">Monthly - Unlimited WhatsApp (R75)</option>
-                        </select>
-                    </div>
+                <div class="payment-card">
+                    <div class="payment-icon">💳</div>
+                    <h3 class="payment-title">Credit/Debit Card</h3>
+                    <p class="payment-description">Secure card payments with 3D Secure authentication for your safety.</p>
+                </div>
 
-                    <div class="form-group" id="airtimeAmountGroup" style="display: none;">
-                        <label for="airtimeAmount">Airtime Amount (R)</label>
-                        <select id="airtimeAmount" name="airtimeAmount">
-                            <option value="">Select amount</option>
-                            <option value="10">R10</option>
-                            <option value="20">R20</option>
-                            <option value="50">R50</option>
-                            <option value="100">R100</option>
-                            <option value="200">R200</option>
-                            <option value="500">R500</option>
-                        </select>
-                    </div>
+                <div class="payment-card">
+                    <div class="payment-icon">📞</div>
+                    <h3 class="payment-title">Airtime Transfer</h3>
+                    <p class="payment-description">Transfer airtime from your existing mobile account to pay for data.</p>
+                </div>
 
-                    <div class="form-group">
-                        <label for="payment">Payment Method</label>
-                        <select id="payment" name="payment" required>
-                            <option value="">Select payment method</option>
-                            <option value="card">Credit/Debit Card</option>
-                            <option value="bank">Bank Transfer</option>
-                            <option value="instant">Instant EFT</option>
-                        </select>
-                    </div>
+                <div class="payment-card">
+                    <div class="payment-icon">🏦</div>
+                    <h3 class="payment-title">Yoco</h3>
+                    <p class="payment-description">Contactless payments using your smartphone or smartwatch.</p>
+                </div>
 
-                    <button type="submit" class="submit-button">Recharge Now</button>
-                </form>
+                <div class="payment-card">
+                    <div class="payment-icon">🎓</div>
+                    <h3 class="payment-title">Campus Outlets</h3>
+                    <p class="payment-description">Visit our campus outlets to recharge with cash or card payments.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -532,10 +762,10 @@
                 <div class="footer-section">
                     <h3>Support</h3>
                     <ul>
-                        <li><a href="support.html">Help Center</a></li>
-                        <li><a href="#">WhatsApp</a></li>
+                        <li><a href="404.html">Help Center</a></li>
+                        <li><a href="404.html">WhatsApp</a></li>
                         <li><a href="contact.html">Contact Us</a></li>
-                        <li><a href="account.html">My Account</a></li>
+                        <li><a href="404.html">My Account</a></li>
                     </ul>
                 </div>
                 
@@ -543,15 +773,15 @@
                     <h3>Company</h3>
                     <ul>
                         <li><a href="about.html">About Us</a></li>
-                        <li><a href="#">Careers</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="404.html">Careers</a></li>
+                        <li><a href="404.html">Privacy Policy</a></li>
+                        <li><a href="404.html">Terms of Service</a></li>
                     </ul>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2025 Campus Mobile. All rights reserved. | Powered by MTN Network</p>
+                <p>&copy; 2025 Campus Mobile. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -560,6 +790,32 @@
     <button class="back-to-top" id="backToTop">↑</button>
 
     <script>
+        // Mobile Menu Toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navMenu = document.getElementById('navMenu');
+        
+        mobileToggle.addEventListener('click', function() {
+            mobileToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        const navLinks = document.querySelectorAll('.nav-menu a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!mobileToggle.contains(e.target) && !navMenu.contains(e.target)) {
+                mobileToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        });
+
         // Header scroll effect
         const header = document.querySelector('.header');
         let lastScrollTop = 0;
@@ -576,6 +832,92 @@
             }
             
             lastScrollTop = scrollTop;
+        });
+
+        // Bundle Selection
+        const bundleOptions = document.querySelectorAll('.bundle-option');
+        const bundleCost = document.getElementById('bundleCost');
+        const totalCost = document.getElementById('totalCost');
+        let selectedBundle = null;
+
+        bundleOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                // Remove selected class from all options
+                bundleOptions.forEach(opt => opt.classList.remove('selected'));
+                
+                // Add selected class to clicked option
+                this.classList.add('selected');
+                
+                // Update selected bundle
+                selectedBundle = {
+                    name: this.querySelector('.bundle-name').textContent,
+                    price: parseInt(this.dataset.price)
+                };
+                
+                updateTotal();
+            });
+        });
+
+        function updateTotal() {
+            let total = 0;
+            
+            // Add bundle cost if selected
+            if (selectedBundle) {
+                total += selectedBundle.price;
+                bundleCost.textContent = `R${selectedBundle.price}`;
+            } else {
+                bundleCost.textContent = 'R0';
+            }
+            
+            totalCost.textContent = `R${total}`;
+        }
+
+        // Form Submission
+        const rechargeForm = document.getElementById('rechargeForm');
+        const submitBtn = document.getElementById('submitBtn');
+        
+        rechargeForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Validate bundle selection
+            if (!selectedBundle) {
+                alert('Please select a bundle before proceeding to payment.');
+                return;
+            }
+            
+            // Get form data
+            const formData = new FormData(rechargeForm);
+            const data = Object.fromEntries(formData);
+            
+            // Simple validation
+            if (!data.phoneNumber || !data.paymentMethod) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+            
+            // Phone validation
+            const phoneRegex = /^(\+27|0)[1-9][0-9]{8}$/;
+            if (!phoneRegex.test(data.phoneNumber.replace(/\s/g, ''))) {
+                alert('Please enter a valid South African phone number.');
+                return;
+            }
+            
+            // Simulate form submission
+            const originalText = submitBtn.textContent;
+            
+            submitBtn.textContent = 'Processing...';
+            submitBtn.disabled = true;
+            
+            // Simulate payment processing
+            setTimeout(() => {
+                alert(`Payment successful! Your ${selectedBundle.name} bundle has been activated on ${data.phoneNumber}. You'll receive a confirmation SMS shortly.`);
+                rechargeForm.reset();
+                bundleOptions.forEach(opt => opt.classList.remove('selected'));
+                selectedBundle = null;
+                updateTotal();
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }, 2000);
         });
 
         // Back to Top Button
@@ -596,59 +938,27 @@
             });
         });
 
-        // Form Submission
-        const rechargeForm = document.getElementById('rechargeForm');
-        const rechargeType = document.getElementById('rechargeType');
-        const dataPlanGroup = document.getElementById('dataPlanGroup');
-        const whatsappPlanGroup = document.getElementById('whatsappPlanGroup');
-        const airtimeAmountGroup = document.getElementById('airtimeAmountGroup');
-        const planSelect = document.getElementById('plan');
-        const whatsappPlanSelect = document.getElementById('whatsappPlan');
-        const airtimeAmount = document.getElementById('airtimeAmount');
-        
-        rechargeType.addEventListener('change', function() {
-            if (this.value === 'data') {
-                dataPlanGroup.style.display = 'block';
-                whatsappPlanGroup.style.display = 'none';
-                airtimeAmountGroup.style.display = 'none';
-                planSelect.required = true;
-                whatsappPlanSelect.required = false;
-                airtimeAmount.required = false;
-            } else if (this.value === 'whatsapp') {
-                dataPlanGroup.style.display = 'none';
-                whatsappPlanGroup.style.display = 'block';
-                airtimeAmountGroup.style.display = 'none';
-                planSelect.required = false;
-                whatsappPlanSelect.required = true;
-                airtimeAmount.required = false;
-            } else if (this.value === 'airtime') {
-                dataPlanGroup.style.display = 'none';
-                whatsappPlanGroup.style.display = 'none';
-                airtimeAmountGroup.style.display = 'block';
-                planSelect.required = false;
-                whatsappPlanSelect.required = false;
-                airtimeAmount.required = true;
-            } else {
-                dataPlanGroup.style.display = 'none';
-                whatsappPlanGroup.style.display = 'none';
-                airtimeAmountGroup.style.display = 'none';
-                planSelect.required = false;
-                whatsappPlanSelect.required = false;
-                airtimeAmount.required = false;
-            }
-        });
-        
-        rechargeForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Here you would typically handle the form submission
-            // For now, we'll just show an alert
-            const type = rechargeType.value === 'data' ? 'data bundle' : rechargeType.value === 'whatsapp' ? 'WhatsApp data' : 'airtime';
-            alert(`Thank you for your ${type} recharge! Your recharge will be activated shortly.`);
-            rechargeForm.reset();
-            dataPlanGroup.style.display = 'none';
-            whatsappPlanGroup.style.display = 'none';
-            airtimeAmountGroup.style.display = 'none';
+        // Add loading animation for cards
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.bundle-option, .payment-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
         });
     </script>
 </body>
